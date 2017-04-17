@@ -19,8 +19,11 @@ function Tabuleiro (qntX, qntY){
     var qntValores = (qntX * qntY)/2;
     var valoresNaoInseridos = [];
     for (i = 1; i <= qntValores; i++){
-      valoresNaoInseridos.push(i);
-      valoresNaoInseridos.push(i);
+      var primeiroFator = Math.floor(Math.random() * i) + 1;
+      var segundoFator = i - primeiroFator;
+      var operacao = primeiroFator + " + " + segundoFator;
+      valoresNaoInseridos.push([i,operacao]);
+      valoresNaoInseridos.push([i,i]);
     }
 
     //cartas que vao estar no jogo
@@ -33,7 +36,7 @@ function Tabuleiro (qntX, qntY){
       for (j = 0; j < qntY; j++){
         //inserido valor aleatorio no vetor
         var ind = Math.floor(Math.random() * valoresNaoInseridos.length); //valor de indice aleatorio
-        coluna[j] = new Carta(xAtual, yAtual,this.tamanhoCarta,this.tamanhoCarta,valoresNaoInseridos[ind]);
+        coluna[j] = new Carta(xAtual, yAtual,this.tamanhoCarta,this.tamanhoCarta,valoresNaoInseridos[ind][0],valoresNaoInseridos[ind][1]);
         valoresNaoInseridos.splice(ind,1);//removendo valor colocado na carta do vetor
 
         yAtual += this.yDif;

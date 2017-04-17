@@ -144,27 +144,34 @@ function Tabuleiro (qntX, qntY){
           //segunda carta a ser clicada
           } else {
 
-            this.cartas[coordenadas[0]][coordenadas[1]].virarCarta();
-            //se o segundo chute for igual ao primeiro
-            if (this.cartas[coordenadas[0]][coordenadas[1]].valor ==
-                this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].valor){
-                  //desativando as duas cartas
-                  this.cartas[coordenadas[0]][coordenadas[1]].resolverCarta();
-                  this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].resolverCarta();
+            //se as coordenadas forem diferents da primeira
+            if (this.coordPrimeiraCarta[0] != coordenadas[0] || this.coordPrimeiraCarta[1] != coordenadas[1]){
 
-                  if (this.areTodasAsCartasReveladas()){
-                    console.log("Acabou! Você venceu :D");
-                  }
+              this.cartas[coordenadas[0]][coordenadas[1]].virarCarta();
+              //se o segundo chute for igual ao primeiro
+              if (this.cartas[coordenadas[0]][coordenadas[1]].valor ==
+                  this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].valor){
+                    //desativando as duas cartas
+                    this.cartas[coordenadas[0]][coordenadas[1]].resolverCarta();
+                    this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].resolverCarta();
 
-            //segundo chute diferente do primeiro
-            } else {
-              this.cartas[coordenadas[0]][coordenadas[1]].desvirarCarta();
-              this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].desvirarCarta();
+                    //condicao de vitoria
+                    if (this.areTodasAsCartasReveladas()){
+                      console.log("Acabou! Você venceu :D");
+                    }
+
+              //segundo chute diferente do primeiro
+              } else {
+                this.cartas[coordenadas[0]][coordenadas[1]].desvirarCarta();
+                this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].desvirarCarta();
+              }
+
+              //resetando variaveis
+              this.isPrimeiraCartaVirada = false;
+              this.coordPrimeiraCarta = [];
             }
-
-            //resetando variaveis
-            this.isPrimeiraCartaVirada = false;
-            this.coordPrimeiraCarta = [];
+            //segunda carta clicada igual a primeira
+            //nada acontece
           }
 
         }
@@ -176,6 +183,11 @@ function Tabuleiro (qntX, qntY){
     }
     //fora do tabuleiro
     //nada acontece
+  }
+
+  this.desvirarCartas = function(coord_1, coord_2){
+    this.cartas[coord_1[0]][coord_1[1]].desvirarCartas();
+    this.cartas[coord_2[0]][coord_2[1]].desvirarCartas();
   }
 
   //retorna true quando todas as cartas forem encontradas

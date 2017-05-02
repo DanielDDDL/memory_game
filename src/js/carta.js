@@ -50,14 +50,14 @@ function Carta(x,y,width,height,valor,face){
     //carta encontrada
     if (!this.isAtiva){
       rect(this.x,this.y,this.width,this.height);
-      text(this.face,xCarta,yCarta); //AQUI
+      text(this.face,xCarta,yCarta);
 
     //carta não encontrada ainda
     } else {
       //carta selecionada pelo usuario
       if (this.isVirada){
         rect(this.x,this.y,this.width,this.height);
-        text(this.face,xCarta,yCarta); //AQUI
+        text(this.face,xCarta,yCarta);
 
       //carta não selecionada
       } else {

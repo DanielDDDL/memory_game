@@ -165,6 +165,7 @@ function Tabuleiro (qntX, qntY){
 
               //segundo chute diferente do primeiro
               } else {
+                
                 this.cartas[coordenadas[0]][coordenadas[1]].desvirarCarta();
                 this.cartas[this.coordPrimeiraCarta[0]][this.coordPrimeiraCarta[1]].desvirarCarta();
               }
@@ -186,6 +187,11 @@ function Tabuleiro (qntX, qntY){
     }
     //fora do tabuleiro
     //nada acontece
+  }
+
+  this.sleep = function(delay) {
+    var start = new Date().getTime();
+    while (new Date().getTime() < start + delay);
   }
 
   this.desvirarCartas = function(coord_1, coord_2){
